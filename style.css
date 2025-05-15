@@ -1,0 +1,122 @@
+:root {
+  --red: hsl(14, 86%, 42%);
+  --green: hsl(159, 69%, 38%);
+
+  --rose-50: hsl(20, 50%, 98%);
+  --rose-100: hsl(13, 31%, 94%);
+  --rose-300: hsl(14, 25%, 72%);
+  --rose-400: hsl(7, 20%, 60%);
+  --rose-500: hsl(12, 20%, 44%);
+  --rose-900: hsl(14, 65%, 9%);
+}
+body {
+  font-size: 16px;
+  background-color: var(--rose-100);
+  font-family: "Red Hat Text", sans-serif;
+}
+
+.title-global {
+  margin-left: 53px;
+}
+
+.layout {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne */
+}
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  flex: 3;
+
+}
+.card {
+  padding: 20px;
+  margin: 10px;
+}
+
+.card-image {
+  width: 240px;
+  border-radius: 20px;
+
+}
+
+.card-image-container {
+  position: relative;
+  width: 240px;
+  
+}
+.card-image-container.active-border {
+
+  border: 3px solid var(--red);
+  border-radius: 20px;
+
+}
+
+aside {
+  flex: 0 0 500px; /* Taille fixe */
+  min-height: auto; /* Hauteur minimale */
+  background-color: var(--rose-50);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.card-category {
+  color: var(--rose-400);
+  font-weight: 400;
+  margin: 1rem 0 0 0;
+}
+.card-title {
+  font-weight: 600;
+  margin: 0.2rem 0 0 0;
+}
+.card-price {
+  color: var(--red);
+  font-weight: 700;
+  margin-bottom: 0;
+  margin: 0.2rem 0 0 0;
+}
+
+.add-to-cart-btn {
+  position: absolute;
+  bottom: -15px; /* Positionne le bouton à 10px du bas de l'image */
+  left: 50%; /* Centre horizontalement le bouton */
+  transform: translateX(
+    -50%
+  ); /* Ajuste le bouton pour qu'il soit parfaitement centré */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%; /* Réduit la largeur du bouton par rapport à l'image */
+  padding: 12px 15px; /* Ajuste les espacements internes du bouton */
+  border-radius: 30px;
+  background-color: white;
+  border: 1px solid var(--rose-400);
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 400;
+  z-index: 1;
+}
+
+.add-to-cart-btn img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  font-weight: 400;
+}
+/* Media Query pour les écrans plus petits */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+    align-items: center; /* Pour centrer l'aside en dessous des produits */
+  }
+
+  aside {
+    order: 1;
+    width: 300px; /* Fixe une largeur raisonnable */
+    margin-top: 20px;
+  }
+}
