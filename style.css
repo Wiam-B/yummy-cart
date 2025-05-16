@@ -31,7 +31,6 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
   flex: 3;
-
 }
 .card {
   padding: 20px;
@@ -41,19 +40,15 @@ body {
 .card-image {
   width: 240px;
   border-radius: 20px;
-
 }
 
 .card-image-container {
   position: relative;
   width: 240px;
-  
 }
 .card-image-container.active-border {
-
   border: 3px solid var(--red);
   border-radius: 20px;
-
 }
 
 aside {
@@ -90,7 +85,7 @@ aside {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80%; /* Réduit la largeur du bouton par rapport à l'image */
+  width: 70%; /* Réduit la largeur du bouton par rapport à l'image */
   padding: 12px 15px; /* Ajuste les espacements internes du bouton */
   border-radius: 30px;
   background-color: white;
@@ -119,4 +114,45 @@ aside {
     width: 300px; /* Fixe une largeur raisonnable */
     margin-top: 20px;
   }
+}
+
+.counter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 45px;
+  width: 70%;
+  padding: 12px 15px;
+  border-radius: 30px;
+  background-color: var(--red);
+  border: 1px solid var(--rose-400);
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.counter-btn {
+  background-color: transparent;
+  border: solid 1px var(--rose-100);
+  border-radius: 50%;
+  width: 28px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.counter-number {
+  font-weight: 400;
+  color: white;
+}
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.empty-cart {
+  color: #888;
+  font-style: italic;
+  padding: 1rem;
 }
