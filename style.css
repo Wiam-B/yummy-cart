@@ -79,16 +79,14 @@ aside {
 
 .add-to-cart-btn {
   position: absolute;
-  bottom: -15px; 
-  left: 50%; 
-  transform: translateX(
-    -50%
-  ); 
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
   width: 70%; /* Réduit la largeur du bouton par rapport à l'image */
-  padding: 12px 15px; 
+  padding: 12px 15px;
   border-radius: 30px;
   background-color: var(--rose-50);
   border: 1px solid var(--rose-400);
@@ -114,14 +112,22 @@ aside {
 
   aside {
     order: 1;
-    width: 250px;
     margin-top: 20px;
+    width: 100%;
+    max-width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
   }
 
   .add-to-cart-btn {
     background-color: var(--rose-50);
     color: var(--rose-900);
-  
+  }
+
+  .checkoutBtn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
   }
 }
 
@@ -148,13 +154,11 @@ aside {
   width: 28px;
   cursor: pointer;
   padding: 5px;
-
 }
 
-.counter-btn:hover{
+.counter-btn:hover {
   background-color: var(--rose-100);
   color: var(--red);
-
 }
 
 .counter-number {
@@ -207,6 +211,11 @@ hr {
   color: var(--rose-400);
   font-weight: bold;
 }
+.quantity,
+.at-price,
+.total {
+  margin-right: 12px;
+}
 
 .empty-cart-image {
   width: 120px;
@@ -220,6 +229,48 @@ hr {
   text-align: center;
   color: var(--rose-500);
 }
+
 .cart-title {
   color: var(--red);
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  color: var(--rose-900);
+}
+
+.cart-paragraph {
+  background-color: var(--rose-100);
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+  color: var(--rose-900);
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 10px;
+  
+}
+
+.cart-paragraph img {
+  width: 24px;
+  height: auto;
+}
+
+.checkoutBtn {
+
+  background-color: var(--red);
+  color: var(--rose-50);
+  width: 100%; 
+  padding: 20px;
+  border-radius: 30px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: 400;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
 }

@@ -32,9 +32,7 @@ function createProductCard(product) {
   <source media="(min-width: 480px)" srcset="${product.image.mobile}">
   
   <!-- Fallback thumbnail (par défaut pour petits écrans ou si source échoue) -->
-  <img src="${product.image.mobile}" alt="${
-    product.name
-  }" class="card-image">
+  <img src="${product.image.mobile}" alt="${product.name}" class="card-image">
 </picture>
 
       <button class="add-to-cart-btn">
@@ -177,6 +175,7 @@ function updateCartUI() {
 
     const name = document.createElement("span");
     name.textContent = item.name;
+    name.style.fontWeight = "600";
 
     const removeBtn = document.createElement("img");
     removeBtn.src = "./assets/images/icon-remove-item.svg";
@@ -212,11 +211,11 @@ function updateCartUI() {
     line2.classList.add("cart-line-second");
 
     const quantitySpan = document.createElement("span");
-    quantitySpan.textContent = `x${item.quantity}`;
+    quantitySpan.textContent = `${item.quantity}x`;
     quantitySpan.classList.add("quantity");
 
     const atSpan = document.createElement("span");
-    atSpan.textContent = ` × $${item.price.toFixed(2)}  `;
+    atSpan.textContent = `@ $${item.price.toFixed(2)}  `;
     atSpan.classList.add("at-price");
 
     const totalSpan = document.createElement("span");
@@ -231,4 +230,37 @@ function updateCartUI() {
     cartItem.append(line1, line2, separator);
     cartContainer.appendChild(cartItem);
   });
+
+  const totalPrice = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+  const totalDiv = document.createElement("div");
+  totalDiv.classList.add("cart-total");
+
+  const totalLabel = document.createElement("span");
+  totalLabel.textContent = "Order Total";
+
+  const totalValue = document.createElement("span");
+  totalValue.textContent = ` $${totalPrice.toFixed(2)}`;
+  totalValue.style.fontWeight = "700";
+
+  totalDiv.appendChild(totalLabel);
+  totalDiv.appendChild(totalValue);
+  cartContainer.appendChild(totalDiv);
+
+  const paragraph = document.createElement("div");
+  paragraph.classList.add("cart-paragraph");
+  paragraph.innerHTML = `
+  <img src="./assets/images/icon-carbon-neutral.svg">
+  <p>This is a <strong>carbon-neutral</strong> delivery </p>`;
+  cartContainer.appendChild(paragraph);
+
+  const checkoutBtn = document.createElement("button");
+  checkoutBtn.classList.add("checkoutBtn");
+
+  checkoutBtn.textContent = "Confirm Order";
+
+  cartContainer.appendChild(checkoutBtn);
+
 }
