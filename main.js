@@ -32,7 +32,7 @@ function createProductCard(product) {
   <source media="(min-width: 480px)" srcset="${product.image.mobile}">
   
   <!-- Fallback thumbnail (par défaut pour petits écrans ou si source échoue) -->
-  <img src="${product.image.thumbnail}" alt="${
+  <img src="${product.image.mobile}" alt="${
     product.name
   }" class="card-image">
 </picture>
