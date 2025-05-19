@@ -92,6 +92,7 @@ aside {
   border-radius: 30px;
   background-color: var(--rose-50);
   border: 1px solid var(--rose-400);
+  color: var(--rose-900);
   font-size: 1rem;
   cursor: pointer;
   font-weight: 400;
@@ -105,7 +106,7 @@ aside {
   font-weight: 400;
 }
 /* Media Query pour les écrans plus petits */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .layout {
     flex-direction: column;
     align-items: center; /* Pour centrer l'aside en dessous des produits */
@@ -115,6 +116,12 @@ aside {
     order: 1;
     width: 250px;
     margin-top: 20px;
+  }
+
+  .add-to-cart-btn {
+    background-color: var(--rose-50);
+    color: var(--rose-900);
+  
   }
 }
 
@@ -149,7 +156,6 @@ aside {
   color: var(--red);
 
 }
-
 
 .counter-number {
   font-weight: 400;
