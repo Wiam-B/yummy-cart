@@ -1,4 +1,5 @@
 const cart = [];
+updateCartUI(); 
 
 //Chargement des produits depuis un fichier JSON
 fetch("./data.json")
@@ -124,20 +125,37 @@ function removeFromCart(productName) {
   updateCartUI();
 }
 
+
 function updateCartUI() {
   const cartContainer = document.querySelector(".cart");
   if (!cartContainer) return;
 
   cartContainer.innerHTML = ""; // Vide le contenu
 
+  // Calculer le nombre total d'items dans le panier
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
   const title = document.createElement("h2");
-  title.textContent = "Your Cart";
+  title.classList.add("cart-title");
+
+  title.textContent = `Your Cart (${totalItems})`;
+
   cartContainer.appendChild(title);
 
   if (cart.length === 0) {
+    // Crée l'image et le message panier vide
+    const emptyImage = document.createElement("img");
+    emptyImage.src = "./assets/images/illustration-empty-cart.svg";
+    emptyImage.alt = "Empty cart";
+    emptyImage.classList.add("empty-cart-image");
+
     const emptyMsg = document.createElement("p");
-    emptyMsg.textContent = "Your cart is empty";
+    emptyMsg.textContent = "Your added items will appear here";
+    emptyMsg.classList.add("empty-cart-message");
+
+    cartContainer.appendChild(emptyImage);
     cartContainer.appendChild(emptyMsg);
+
     return;
   }
 
@@ -178,7 +196,6 @@ function updateCartUI() {
         removeFromCart(item.name);
       }
     });
-    
 
     line1.appendChild(name);
     line1.appendChild(removeBtn);
@@ -200,7 +217,7 @@ function updateCartUI() {
     totalSpan.classList.add("total");
 
     line2.append(quantitySpan, atSpan, totalSpan);
-    
+
     // Séparateur
     const separator = document.createElement("hr");
 
