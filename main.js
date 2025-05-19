@@ -110,6 +110,7 @@ function addProductToCart(product, quantity) {
       name: product.name,
       price: product.price,
       quantity,
+      image: product.image.mobile,
     });
   }
   updateCartUI();
@@ -263,4 +264,47 @@ function updateCartUI() {
 
   cartContainer.appendChild(checkoutBtn);
 
+  checkoutBtn.addEventListener("click", () => {
+    const modal = document.createElement("div");
+    modal.classList.add("modal");
+
+    const modalContent = document.createElement("div");
+    modalContent.classList.add("modal-content");
+
+    // Ajouter les informations de commande
+    modalContent.innerHTML = `
+    <img src="./assets/images/icon-order-confirmed.svg" alt="Order Confirmed" class="order-confirmed">
+      <h1>Order Confirmed</h1>
+      <span>We hope you enjoy your food!</span>
+    <ul class="cart-list">
+  ${cart
+    .map(
+      (item) => `
+        <li class="cart-item-li">
+          <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+          <span style="color: var(--rose-900); font-weight: 600;"
+
+">${item.name}</span>
+          <span class="cart-item-price">
+            ${item.quantity} × $${item.price.toFixed(2)} = 
+            <strong>$${(item.price * item.quantity).toFixed(2)}</strong>
+          </span>
+        </li>
+      `
+    )
+    .join("")}
+</ul>
+
+      <p><strong>Order Total $${totalPrice.toFixed(2)}</strong></p>
+      <button class="checkoutBtn">Start New Order</button>
+    `;
+
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+
+    // Bouton pour fermer la modale
+    document.querySelector(".closeModal").addEventListener("click", () => {
+      modal.remove();
+    });
+  });
 }
