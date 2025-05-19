@@ -1,5 +1,5 @@
 const cart = [];
-updateCartUI(); 
+updateCartUI();
 
 //Chargement des produits depuis un fichier JSON
 fetch("./data.json")
@@ -22,13 +22,21 @@ function createProductCard(product) {
   card.innerHTML = `
     <div class="card-image-container">
       <picture>
-        <source media="(min-width:1440px)" srcset="${product.image.desktop}">
-        <source media="(min-width:768px)" srcset="${product.image.tablet}">
-        <source media="(min-width:375px)" srcset="${product.image.mobile}">
-        <img src="${product.image.thumbnail}" alt="${
+  <!-- Grand écran (desktop) -->
+  <source media="(min-width: 1024px)" srcset="${product.image.desktop}">
+  
+  <!-- Tablette -->
+  <source media="(min-width: 768px)" srcset="${product.image.tablet}">
+  
+  <!-- Mobile -->
+  <source media="(min-width: 480px)" srcset="${product.image.mobile}">
+  
+  <!-- Fallback thumbnail (par défaut pour petits écrans ou si source échoue) -->
+  <img src="${product.image.thumbnail}" alt="${
     product.name
   }" class="card-image">
-      </picture>
+</picture>
+
       <button class="add-to-cart-btn">
         <img src="./assets/images/icon-add-to-cart.svg" alt="icon add to cart">
         Add to Cart
@@ -124,7 +132,6 @@ function removeFromCart(productName) {
   }
   updateCartUI();
 }
-
 
 function updateCartUI() {
   const cartContainer = document.querySelector(".cart");

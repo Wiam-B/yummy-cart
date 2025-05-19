@@ -24,14 +24,16 @@ body {
   gap: 20px;
   padding: 20px;
   align-items: flex-start;
-  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne */
+  flex-wrap: wrap;
 }
+
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
   flex: 3;
 }
+
 .card {
   padding: 20px;
   margin: 10px;
@@ -77,18 +79,18 @@ aside {
 
 .add-to-cart-btn {
   position: absolute;
-  bottom: -15px; /* Positionne le bouton à 10px du bas de l'image */
-  left: 50%; /* Centre horizontalement le bouton */
+  bottom: -15px; 
+  left: 50%; 
   transform: translateX(
     -50%
-  ); /* Ajuste le bouton pour qu'il soit parfaitement centré */
+  ); 
   display: flex;
   align-items: center;
   justify-content: center;
   width: 70%; /* Réduit la largeur du bouton par rapport à l'image */
-  padding: 12px 15px; /* Ajuste les espacements internes du bouton */
+  padding: 12px 15px; 
   border-radius: 30px;
-  background-color: white;
+  background-color: var(--rose-50);
   border: 1px solid var(--rose-400);
   font-size: 1rem;
   cursor: pointer;
@@ -111,7 +113,7 @@ aside {
 
   aside {
     order: 1;
-    width: 300px; /* Fixe une largeur raisonnable */
+    width: 250px;
     margin-top: 20px;
   }
 }
@@ -139,13 +141,20 @@ aside {
   width: 28px;
   cursor: pointer;
   padding: 5px;
+
 }
+
+.counter-btn:hover{
+  background-color: var(--rose-100);
+  color: var(--red);
+
+}
+
 
 .counter-number {
   font-weight: 400;
   color: white;
 }
-
 
 .empty-cart {
   color: #888;
@@ -201,10 +210,10 @@ hr {
   opacity: 0.7;
 }
 
-.empty-cart-message{
+.empty-cart-message {
   text-align: center;
   color: var(--rose-500);
 }
-.cart-title{
+.cart-title {
   color: var(--red);
 }
