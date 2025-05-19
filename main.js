@@ -128,20 +128,83 @@ function updateCartUI() {
   const cartContainer = document.querySelector(".cart");
   if (!cartContainer) return;
 
-  cartContainer.innerHTML = `
-    <h2>Cart</h2>
-    ${
-      cart.length === 0
-        ? "<p>Your cart is empty</p>"
-        : cart
-            .map(
-              (item) => `
-        <div class="cart-item">
-          <span>${item.name} x ${item.quantity}</span>
-          <span>$${(item.quantity * item.price).toFixed(2)}</span>
-        </div>`
-            )
-            .join("")
-    }
-  `;
+  cartContainer.innerHTML = ""; // Vide le contenu
+
+  const title = document.createElement("h2");
+  title.textContent = "Your Cart";
+  cartContainer.appendChild(title);
+
+  if (cart.length === 0) {
+    const emptyMsg = document.createElement("p");
+    emptyMsg.textContent = "Your cart is empty";
+    cartContainer.appendChild(emptyMsg);
+    return;
+  }
+
+  cart.forEach((item) => {
+    // Conteneur de l’article
+    const cartItem = document.createElement("div");
+    cartItem.classList.add("cart-item");
+
+    // Première ligne : nom + icône de suppression
+    const line1 = document.createElement("div");
+    line1.classList.add("cart-line");
+
+    const name = document.createElement("span");
+    name.textContent = item.name;
+
+    const removeBtn = document.createElement("img");
+    removeBtn.src = "./assets/images/icon-remove-item.svg";
+    removeBtn.alt = "remove item";
+    removeBtn.classList.add("remove-item");
+
+    // Action de suppression
+    removeBtn.addEventListener("click", () => {
+      if (item.quantity > 1) {
+        item.quantity--;
+        updateCartUI();
+
+        // Mettre à jour aussi le compteur dans la carte produit (si visible)
+        const countDisplays = document.querySelectorAll(".counter-number");
+        countDisplays.forEach((span) => {
+          const cardTitle = span
+            .closest(".card")
+            .querySelector(".card-title").textContent;
+          if (cardTitle === item.name) {
+            span.textContent = item.quantity;
+          }
+        });
+      } else {
+        removeFromCart(item.name);
+      }
+    });
+    
+
+    line1.appendChild(name);
+    line1.appendChild(removeBtn);
+
+    // Deuxième ligne : quantité × prix unitaire = total
+    const line2 = document.createElement("div");
+    line2.classList.add("cart-line-second");
+
+    const quantitySpan = document.createElement("span");
+    quantitySpan.textContent = `x${item.quantity}`;
+    quantitySpan.classList.add("quantity");
+
+    const atSpan = document.createElement("span");
+    atSpan.textContent = ` × $${item.price.toFixed(2)}  `;
+    atSpan.classList.add("at-price");
+
+    const totalSpan = document.createElement("span");
+    totalSpan.textContent = `  $${(item.quantity * item.price).toFixed(2)}`;
+    totalSpan.classList.add("total");
+
+    line2.append(quantitySpan, atSpan, totalSpan);
+    
+    // Séparateur
+    const separator = document.createElement("hr");
+
+    cartItem.append(line1, line2, separator);
+    cartContainer.appendChild(cartItem);
+  });
 }
