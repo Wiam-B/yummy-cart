@@ -280,16 +280,21 @@ function updateCartUI() {
   ${cart
     .map(
       (item) => `
-        <li class="cart-item-li">
-          <img src="${item.image}" alt="${item.name}" class="cart-item-image">
-          <span style="color: var(--rose-900); font-weight: 600;"
+      <li class="cart-item-li">
+  <div class="cart-item-image-wrapper">
+    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+  </div>
+  <div class="cart-item-details">
+    <span class="cart-item-name">${item.name}</span>
+    <span class="cart-item-unit-price">${item.quantity} × $${item.price.toFixed(
+        2
+      )}</span>
+  </div>
+  <div class="cart-item-total">
+    <strong>$${(item.price * item.quantity).toFixed(2)}</strong>
+  </div>
+</li>
 
-">${item.name}</span>
-          <span class="cart-item-price">
-            ${item.quantity} × $${item.price.toFixed(2)} = 
-            <strong>$${(item.price * item.quantity).toFixed(2)}</strong>
-          </span>
-        </li>
       `
     )
     .join("")}
