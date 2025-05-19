@@ -302,9 +302,14 @@ function updateCartUI() {
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
 
-    // Bouton pour fermer la modale
-    document.querySelector(".closeModal").addEventListener("click", () => {
-      modal.remove();
+    // Sélectionner le bouton "Start New Order" dans la modale
+    const startNewOrderBtn = modal.querySelector("button.checkoutBtn");
+
+    startNewOrderBtn.addEventListener("click", () => {
+      cart.length = 0; // Vide le panier
+      updateCartUI(); // Met à jour l'interface
+      modal.remove(); // Ferme la modale
+      window.location.reload(); // recharger toute la page
     });
   });
 }
